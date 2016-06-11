@@ -14,6 +14,7 @@
 @interface WeatherTableViewController ()<UITableViewDelegate, UITableViewDataSource>{
     
     NSMutableArray *cityWeather;
+    NSMutableDictionary *iconSet;
     Weather *weather;
 }
 @end
@@ -22,7 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    iconSet=[[NSMutableDictionary alloc]init];
+    [self createIconSetCodeDictionary];
     cityWeather=[[NSMutableArray alloc] init];
     [self loadVicinity];
     [self loadWeatherData :[self loadVicinity]];
@@ -75,7 +77,15 @@
         NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSLog(@"data es : %@", json);
-        [self readCitiesList:json];
+        
+        NSString *responseCode  = [NSString stringWithFormat:@"%@", json[@"cod"]];
+        NSString *responseOK=@"200";
+        
+        if ([responseCode isEqualToString:responseOK]) {
+            [self readCitiesList:json];
+        }
+        
+        
         
     }
 }
@@ -103,15 +113,105 @@
     NSDictionary *weatherData =jsonList[@"weather"];
     //NSString *description =weatherData[@"description"];
     NSString *description;
+    NSString *cod;
     for (NSDictionary *mainDic in weatherData){
         description = (NSString*) [mainDic valueForKey:@"description"];
+        cod = [NSString stringWithFormat:@"%@", [mainDic valueForKey:@"id"]];
     }
     NSLog(@"description es : %@", description);
     [weather setDescription:description];
-    
+    [weather setCod:cod];
+   
+    NSString *urlimg=[self getImageFromCode:cod];
+    [weather setUrlIcon:urlimg];
+
     //NSLog(@"weather es : %@", weather);
     [cityWeather addObject:weather];
     
+}
+-(NSString *) getImageFromCode:(NSString * )imgCode {
+    
+    //NSString *imgNumber=[NSString stringWithFormat:@"%@", [mainDic valueForKey:@"id"]];
+    NSString *valueImg=[iconSet objectForKey:imgCode ];
+    
+    NSLog(@"valueImg %@",valueImg );
+    NSString *combinedURL = [NSString stringWithFormat:@"%@%@%@",@"icons/", valueImg, @"d.png"];
+    
+    NSLog(@"combinedURL %@",combinedURL );
+   // day http://openweathermap.org/img/w/+Numero+d.png  cambia solo la d
+   // night http://openweathermap.org/img/w/+Numero+n.png cambia solo la nnil
+    
+    return combinedURL;
+}
+- (void) createIconSetCodeDictionary {
+    
+            //Group 2xx: Thunderstorm
+    [iconSet setObject:@"11" forKey:@"200"];
+    [iconSet setObject:@"11" forKey:@"201"];
+    [iconSet setObject:@"11" forKey:@"202"];
+    [iconSet setObject:@"11" forKey:@"210"];
+    [iconSet setObject:@"11" forKey:@"211"];
+    [iconSet setObject:@"11" forKey:@"212"];
+    [iconSet setObject:@"11" forKey:@"221"];
+    [iconSet setObject:@"11" forKey:@"230"];
+    [iconSet setObject:@"11" forKey:@"231"];
+    [iconSet setObject:@"11" forKey:@"232"];
+    
+    //Group 3xx: Drizzle
+    [iconSet setObject:@"09" forKey:@"300"];
+    [iconSet setObject:@"09" forKey:@"301"];
+    [iconSet setObject:@"09" forKey:@"302"];
+    [iconSet setObject:@"09" forKey:@"310"];
+    [iconSet setObject:@"09" forKey:@"311"];
+    [iconSet setObject:@"09" forKey:@"312"];
+    [iconSet setObject:@"09" forKey:@"313"];
+    [iconSet setObject:@"09" forKey:@"314"];
+    [iconSet setObject:@"09" forKey:@"321"];
+    
+    //Group 5xx: Rain
+    [iconSet setObject:@"10" forKey:@"500"];
+    [iconSet setObject:@"10" forKey:@"501"];
+    [iconSet setObject:@"10" forKey:@"502"];
+    [iconSet setObject:@"10" forKey:@"503"];
+    [iconSet setObject:@"10" forKey:@"504"];
+    [iconSet setObject:@"13" forKey:@"511"];
+    [iconSet setObject:@"09" forKey:@"520"];
+    [iconSet setObject:@"09" forKey:@"521"];
+    [iconSet setObject:@"09" forKey:@"522"];
+    [iconSet setObject:@"09" forKey:@"531"];
+    
+    //Group 6xx: Snow
+    [iconSet setObject:@"13" forKey:@"600"];
+    [iconSet setObject:@"13" forKey:@"601"];
+    [iconSet setObject:@"13" forKey:@"602"];
+    [iconSet setObject:@"13" forKey:@"611"];
+    [iconSet setObject:@"13" forKey:@"612"];
+    [iconSet setObject:@"13" forKey:@"615"];
+    [iconSet setObject:@"13" forKey:@"616"];
+    [iconSet setObject:@"13" forKey:@"620"];
+    [iconSet setObject:@"13" forKey:@"621"];
+    [iconSet setObject:@"13" forKey:@"622"];
+    
+    //Group 7xx: Atmosphere
+    [iconSet setObject:@"50" forKey:@"701"];
+    [iconSet setObject:@"50" forKey:@"711"];
+    [iconSet setObject:@"50" forKey:@"721"];
+    [iconSet setObject:@"50" forKey:@"731"];
+    [iconSet setObject:@"50" forKey:@"741"];
+    [iconSet setObject:@"50" forKey:@"751"];
+    [iconSet setObject:@"50" forKey:@"761"];
+    [iconSet setObject:@"50" forKey:@"762"];
+    [iconSet setObject:@"50" forKey:@"771"];
+    [iconSet setObject:@"50" forKey:@"781"];
+    
+    //Group 800: Clear
+    [iconSet setObject:@"01" forKey:@"800"];
+    
+    //Group 80x: Clouds
+    [iconSet setObject:@"02" forKey:@"801"];
+    [iconSet setObject:@"03" forKey:@"802"];
+    [iconSet setObject:@"04" forKey:@"803"];
+    [iconSet setObject:@"04" forKey:@"804"];
 }
 
 -(int)kelvinToCelsius:(NSString *)kelvin {
@@ -162,14 +262,14 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     Weather *dataWeather = [cityWeather objectAtIndex:indexPath.row];
-    
     WeatherTableViewCell *cell=[aTableView dequeueReusableCellWithIdentifier:NSStringFromClass([WeatherTableViewCell class]) forIndexPath:indexPath];
+    
     cell.labelName.text=dataWeather.name;
     cell.labelDescription.text=[@"Weather: " stringByAppendingString:dataWeather.description];
     cell.labelTemp.text=[@"Temp: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp]];
     cell.labelTempMin.text=[@"min: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_min]];
     cell.labelTempMax.text=[@"max: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_max]];
-    
+    cell.imageView.image= [UIImage imageNamed:dataWeather.urlIcon];
     return cell;
 }
 

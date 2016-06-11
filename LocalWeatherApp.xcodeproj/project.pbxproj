@@ -23,6 +23,7 @@
 		06A648901D0C40DF00B650B0 /* WeatherTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A6488F1D0C40DF00B650B0 /* WeatherTableViewController.m */; };
 		06A648941D0C45F900B650B0 /* WeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648921D0C45F900B650B0 /* WeatherTableViewCell.m */; };
 		06A648951D0C45F900B650B0 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */; };
+		06A6489D1D0C79E500B650B0 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 06A6489C1D0C79E500B650B0 /* icons */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		06A648911D0C45F900B650B0 /* WeatherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherTableViewCell.h; sourceTree = "<group>"; };
 		06A648921D0C45F900B650B0 /* WeatherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTableViewCell.m; sourceTree = "<group>"; };
 		06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
+		06A6489C1D0C79E500B650B0 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		06A6484C1D0C383E00B650B0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				06A6489C1D0C79E500B650B0 /* icons */,
 				06A6484D1D0C383E00B650B0 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -296,6 +299,7 @@
 				06A648951D0C45F900B650B0 /* WeatherTableViewCell.xib in Resources */,
 				06A6485F1D0C383E00B650B0 /* LaunchScreen.storyboard in Resources */,
 				06A6485C1D0C383E00B650B0 /* Assets.xcassets in Resources */,
+				06A6489D1D0C79E500B650B0 /* icons in Resources */,
 				06A648571D0C383E00B650B0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

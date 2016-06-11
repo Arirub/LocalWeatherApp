@@ -15,5 +15,7 @@
 @synthesize temp = _temp;
 @synthesize temp_min = _temp_min;
 @synthesize description = _description;
+@synthesize cod = _cod;
+@synthesize urlIcon = _urlIcon;
 
 @end

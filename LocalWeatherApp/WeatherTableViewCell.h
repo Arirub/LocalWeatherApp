@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelTemp;
 @property (strong, nonatomic) IBOutlet UILabel *labelTempMin;
 @property (strong, nonatomic) IBOutlet UILabel *labelTempMax;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

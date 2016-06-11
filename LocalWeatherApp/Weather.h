@@ -15,5 +15,7 @@
 @property (nonatomic) int temp_max;
 @property (nonatomic) int temp_min;
 @property (nonatomic,retain) NSString *description;
+@property (nonatomic,retain) NSString *cod;
+@property (nonatomic,retain) NSString *urlIcon;
 
 @end
