@@ -8,6 +8,7 @@
 
 #import "WeatherTableViewController.h"
 #import "Weather.h"
+#import "WeatherTableViewCell.h"
 
 
 @interface WeatherTableViewController ()<UITableViewDelegate, UITableViewDataSource>{
@@ -30,6 +31,7 @@
     
     //register Custom Table cell
     
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WeatherTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([WeatherTableViewCell class])];
     
 }
 
@@ -55,8 +57,6 @@
         
         [cityList setObject:trimmedCity forKey:trimmedCity];
         NSLog(@"name es : %@", trimmedCity);
-        
-        //NSLog(@"name es : %@", t);
         
     }
     
@@ -132,24 +132,51 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    
+    return [cityWeather count];
 }
 
-/*
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+ /*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
  
- // Configure the cell...
+     Weather *dataWeather = [cityWeather objectAtIndex:indexPath.row];
+     
+     WeatherTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WeatherTableViewCell class]) forIndexPath:indexPath];
+     cell.labelName.text=dataWeather.name;
+     cell.labelDescription.text=[@"Weather: " stringByAppendingString:dataWeather.description];
+     cell.labelTemp.text=[@"Temp: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp]];
+     cell.labelTempMin.text=[@"min: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_min]];
+     cell.labelTempMax.text=[@"max: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_max]];
+     
+     return cell;
  
  return cell;
- }
- */
+ }*/
+
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Weather *dataWeather = [cityWeather objectAtIndex:indexPath.row];
+    
+    WeatherTableViewCell *cell=[aTableView dequeueReusableCellWithIdentifier:NSStringFromClass([WeatherTableViewCell class]) forIndexPath:indexPath];
+    cell.labelName.text=dataWeather.name;
+    cell.labelDescription.text=[@"Weather: " stringByAppendingString:dataWeather.description];
+    cell.labelTemp.text=[@"Temp: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp]];
+    cell.labelTempMin.text=[@"min: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_min]];
+    cell.labelTempMax.text=[@"max: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_max]];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
 
 /*
  // Override to support conditional editing of the table view.
