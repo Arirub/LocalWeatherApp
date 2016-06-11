@@ -23,16 +23,68 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-tc-XhD">
                                 <rect key="frame" x="247" y="457" width="106" height="30"/>
                                 <state key="normal" title="Check Weather"/>
+                                <connections>
+                                    <action selector="checkWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1K-Bk-p0k"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="g4O-ua-d5A" id="dF4-p6-aQX"/>
+                        <segue destination="Eh8-gs-mkp" kind="show" identifier="idSegueTableView" id="Xb4-gb-gjJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="241" y="515"/>
+        </scene>
+        <!--Weather Table View Controller-->
+        <scene sceneID="Qzf-3g-bEN">
+            <objects>
+                <tableViewController id="8HR-0K-usa" customClass="WeatherTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iRo-IT-DU6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dWJ-hT-FRC">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dWJ-hT-FRC" id="96x-F3-GmF">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8HR-0K-usa" id="CYd-3Y-BSp"/>
+                            <outlet property="delegate" destination="8HR-0K-usa" id="REj-b0-wVP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="emh-tY-fJA"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eMp-Kg-bkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1730" y="515"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0qF-J8-Dto">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eh8-gs-mkp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WED-L9-ln8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8HR-0K-usa" kind="relationship" relationship="rootViewController" id="le8-st-1XV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oni-HM-S2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="918" y="515"/>
         </scene>
     </scenes>
 </document>

@@ -14,5 +14,7 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
+- (IBAction)checkWeather:(id)sender;
+
 @end
 

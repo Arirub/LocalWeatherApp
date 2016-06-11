@@ -19,6 +19,8 @@
 		06A648831D0C395D00B650B0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A648821D0C395D00B650B0 /* CoreLocation.framework */; };
 		06A648851D0C396700B650B0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A648841D0C396700B650B0 /* MapKit.framework */; };
 		06A648891D0C3C5F00B650B0 /* Geolocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648881D0C3C5F00B650B0 /* Geolocation.m */; };
+		06A6488C1D0C407D00B650B0 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A6488B1D0C407D00B650B0 /* Weather.m */; };
+		06A648901D0C40DF00B650B0 /* WeatherTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A6488F1D0C40DF00B650B0 /* WeatherTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		06A648841D0C396700B650B0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		06A648871D0C3C5F00B650B0 /* Geolocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geolocation.h; sourceTree = "<group>"; };
 		06A648881D0C3C5F00B650B0 /* Geolocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geolocation.m; sourceTree = "<group>"; };
+		06A6488A1D0C407C00B650B0 /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
+		06A6488B1D0C407D00B650B0 /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
+		06A6488E1D0C40DE00B650B0 /* WeatherTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherTableViewController.h; sourceTree = "<group>"; };
+		06A6488F1D0C40DF00B650B0 /* WeatherTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 		06A6484B1D0C383E00B650B0 /* LocalWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				06A6488D1D0C40C000B650B0 /* Controller */,
 				06A648861D0C3C4200B650B0 /* Model */,
 				06A6484F1D0C383E00B650B0 /* AppDelegate.h */,
 				06A648501D0C383E00B650B0 /* AppDelegate.m */,
@@ -160,8 +167,19 @@
 			children = (
 				06A648871D0C3C5F00B650B0 /* Geolocation.h */,
 				06A648881D0C3C5F00B650B0 /* Geolocation.m */,
+				06A6488A1D0C407C00B650B0 /* Weather.h */,
+				06A6488B1D0C407D00B650B0 /* Weather.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		06A6488D1D0C40C000B650B0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				06A6488E1D0C40DE00B650B0 /* WeatherTableViewController.h */,
+				06A6488F1D0C40DF00B650B0 /* WeatherTableViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,11 +312,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A6488C1D0C407D00B650B0 /* Weather.m in Sources */,
 				06A648891D0C3C5F00B650B0 /* Geolocation.m in Sources */,
 				06A6485A1D0C383E00B650B0 /* LocalWeatherApp.xcdatamodeld in Sources */,
 				06A648541D0C383E00B650B0 /* ViewController.m in Sources */,
 				06A648511D0C383E00B650B0 /* AppDelegate.m in Sources */,
 				06A6484E1D0C383E00B650B0 /* main.m in Sources */,
+				06A648901D0C40DF00B650B0 /* WeatherTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
