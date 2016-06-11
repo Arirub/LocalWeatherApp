@@ -16,6 +16,9 @@
 		06A6485F1D0C383E00B650B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A6485D1D0C383E00B650B0 /* LaunchScreen.storyboard */; };
 		06A6486A1D0C383E00B650B0 /* LocalWeatherAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648691D0C383E00B650B0 /* LocalWeatherAppTests.m */; };
 		06A648751D0C383E00B650B0 /* LocalWeatherAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648741D0C383E00B650B0 /* LocalWeatherAppUITests.m */; };
+		06A648831D0C395D00B650B0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A648821D0C395D00B650B0 /* CoreLocation.framework */; };
+		06A648851D0C396700B650B0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A648841D0C396700B650B0 /* MapKit.framework */; };
+		06A648891D0C3C5F00B650B0 /* Geolocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648881D0C3C5F00B650B0 /* Geolocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,10 @@
 		06A648701D0C383E00B650B0 /* LocalWeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalWeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A648741D0C383E00B650B0 /* LocalWeatherAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalWeatherAppUITests.m; sourceTree = "<group>"; };
 		06A648761D0C383E00B650B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06A648821D0C395D00B650B0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		06A648841D0C396700B650B0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		06A648871D0C3C5F00B650B0 /* Geolocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geolocation.h; sourceTree = "<group>"; };
+		06A648881D0C3C5F00B650B0 /* Geolocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geolocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A648851D0C396700B650B0 /* MapKit.framework in Frameworks */,
+				06A648831D0C395D00B650B0 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +92,8 @@
 		06A648401D0C383E00B650B0 = {
 			isa = PBXGroup;
 			children = (
+				06A648841D0C396700B650B0 /* MapKit.framework */,
+				06A648821D0C395D00B650B0 /* CoreLocation.framework */,
 				06A6484B1D0C383E00B650B0 /* LocalWeatherApp */,
 				06A648681D0C383E00B650B0 /* LocalWeatherAppTests */,
 				06A648731D0C383E00B650B0 /* LocalWeatherAppUITests */,
@@ -103,6 +114,7 @@
 		06A6484B1D0C383E00B650B0 /* LocalWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				06A648861D0C3C4200B650B0 /* Model */,
 				06A6484F1D0C383E00B650B0 /* AppDelegate.h */,
 				06A648501D0C383E00B650B0 /* AppDelegate.m */,
 				06A648521D0C383E00B650B0 /* ViewController.h */,
@@ -141,6 +153,15 @@
 				06A648761D0C383E00B650B0 /* Info.plist */,
 			);
 			path = LocalWeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		06A648861D0C3C4200B650B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06A648871D0C3C5F00B650B0 /* Geolocation.h */,
+				06A648881D0C3C5F00B650B0 /* Geolocation.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A648891D0C3C5F00B650B0 /* Geolocation.m in Sources */,
 				06A6485A1D0C383E00B650B0 /* LocalWeatherApp.xcdatamodeld in Sources */,
 				06A648541D0C383E00B650B0 /* ViewController.m in Sources */,
 				06A648511D0C383E00B650B0 /* AppDelegate.m in Sources */,
@@ -418,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LocalWeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.localweather.LocalWeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -429,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LocalWeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.localweather.LocalWeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
