@@ -12,7 +12,6 @@
 
 @interface WeatherTableViewController : UITableViewController
 
-@property (nonatomic) Geolocation* geolocview;
-@property (nonatomic) NSString * prueba;
+- (IBAction)goBack:(id)sender;
 
 @end

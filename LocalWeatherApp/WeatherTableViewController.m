@@ -20,16 +20,13 @@
     NSMutableArray *cityWeather;
     NSMutableDictionary *iconSet;
     Weather *weather;
-    //Geolocation *geoloc;
-    //ViewController *view;
     
 }
 
 @end
 
 @implementation WeatherTableViewController
-@synthesize geolocview;
-@synthesize prueba;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     iconSet=[[NSMutableDictionary alloc]init];
@@ -297,6 +294,8 @@
     cell.labelTempMin.text=[@"min: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_min]];
     cell.labelTempMax.text=[@"max: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_max]];
     cell.imageView.image= [UIImage imageNamed:dataWeather.urlIcon];
+    cell.userInteractionEnabled = NO;
+
     return cell;
 }
 
@@ -349,4 +348,7 @@
  }
  */
 
+- (IBAction)goBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

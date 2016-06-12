@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		069FB38B1D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 069FB3881D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m */; };
 		069FB38C1D0D630D003ECE21 /* GeolocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 069FB38A1D0D630D003ECE21 /* GeolocationEntity.m */; };
+		069FB3B71D0D8C80003ECE21 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 069FB3B61D0D8C80003ECE21 /* icons */; };
 		06A6484E1D0C383E00B650B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A6484D1D0C383E00B650B0 /* main.m */; };
 		06A648511D0C383E00B650B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648501D0C383E00B650B0 /* AppDelegate.m */; };
 		06A648541D0C383E00B650B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648531D0C383E00B650B0 /* ViewController.m */; };
@@ -25,7 +26,6 @@
 		06A648901D0C40DF00B650B0 /* WeatherTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A6488F1D0C40DF00B650B0 /* WeatherTableViewController.m */; };
 		06A648941D0C45F900B650B0 /* WeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648921D0C45F900B650B0 /* WeatherTableViewCell.m */; };
 		06A648951D0C45F900B650B0 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */; };
-		06A6489D1D0C79E500B650B0 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 06A6489C1D0C79E500B650B0 /* icons */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +50,7 @@
 		069FB3881D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GeolocationEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		069FB3891D0D630D003ECE21 /* GeolocationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationEntity.h; sourceTree = "<group>"; };
 		069FB38A1D0D630D003ECE21 /* GeolocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocationEntity.m; sourceTree = "<group>"; };
+		069FB3B61D0D8C80003ECE21 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 		06A648491D0C383E00B650B0 /* LocalWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A6484D1D0C383E00B650B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06A6484F1D0C383E00B650B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		06A648911D0C45F900B650B0 /* WeatherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherTableViewCell.h; sourceTree = "<group>"; };
 		06A648921D0C45F900B650B0 /* WeatherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTableViewCell.m; sourceTree = "<group>"; };
 		06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
-		06A6489C1D0C79E500B650B0 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +108,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		069FB38D1D0D89C8003ECE21 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06A648551D0C383E00B650B0 /* Main.storyboard */,
+				06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		06A648401D0C383E00B650B0 = {
 			isa = PBXGroup;
 			children = (
@@ -133,14 +142,11 @@
 		06A6484B1D0C383E00B650B0 /* LocalWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				069FB38D1D0D89C8003ECE21 /* View */,
 				06A6488D1D0C40C000B650B0 /* Controller */,
 				06A648861D0C3C4200B650B0 /* Model */,
 				06A6484F1D0C383E00B650B0 /* AppDelegate.h */,
 				06A648501D0C383E00B650B0 /* AppDelegate.m */,
-				06A648521D0C383E00B650B0 /* ViewController.h */,
-				06A648531D0C383E00B650B0 /* ViewController.m */,
-				06A648551D0C383E00B650B0 /* Main.storyboard */,
-				06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */,
 				06A6485B1D0C383E00B650B0 /* Assets.xcassets */,
 				06A6485D1D0C383E00B650B0 /* LaunchScreen.storyboard */,
 				06A648601D0C383E00B650B0 /* Info.plist */,
@@ -157,7 +163,7 @@
 		06A6484C1D0C383E00B650B0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				06A6489C1D0C79E500B650B0 /* icons */,
+				069FB3B61D0D8C80003ECE21 /* icons */,
 				06A6484D1D0C383E00B650B0 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -195,6 +201,8 @@
 		06A6488D1D0C40C000B650B0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				06A648521D0C383E00B650B0 /* ViewController.h */,
+				06A648531D0C383E00B650B0 /* ViewController.m */,
 				06A6488E1D0C40DE00B650B0 /* WeatherTableViewController.h */,
 				06A6488F1D0C40DF00B650B0 /* WeatherTableViewController.m */,
 				06A648911D0C45F900B650B0 /* WeatherTableViewCell.h */,
@@ -309,7 +317,7 @@
 				06A648951D0C45F900B650B0 /* WeatherTableViewCell.xib in Resources */,
 				06A6485F1D0C383E00B650B0 /* LaunchScreen.storyboard in Resources */,
 				06A6485C1D0C383E00B650B0 /* Assets.xcassets in Resources */,
-				06A6489D1D0C79E500B650B0 /* icons in Resources */,
+				069FB3B71D0D8C80003ECE21 /* icons in Resources */,
 				06A648571D0C383E00B650B0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

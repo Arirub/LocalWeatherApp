@@ -75,7 +75,14 @@
                             <outlet property="delegate" destination="8HR-0K-usa" id="REj-b0-wVP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="emh-tY-fJA"/>
+                    <navigationItem key="navigationItem" id="emh-tY-fJA">
+                        <barButtonItem key="backBarButtonItem" title="Go back" id="c5q-Rs-3s7"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="ttU-wc-hiJ">
+                            <connections>
+                                <action selector="goBack:" destination="8HR-0K-usa" id="wiM-M1-oqB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMp-Kg-bkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
