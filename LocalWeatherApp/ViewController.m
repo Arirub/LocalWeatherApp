@@ -10,10 +10,11 @@
 #import "Geolocation.h"
 #import "WeatherTableViewController.h"
 #import "AppDelegate.h"
+#import "Reachability.h"
 
 #define METERS_MILE 1609.344
 #define METERS_FEET 3.28084
-
+#define APP_DELEGATE1 ((AppDelegate*)[[UIApplication sharedApplication] delegate])
 
 @interface ViewController ()<CLLocationManagerDelegate>
 @property (strong) NSMutableArray *locations;
@@ -26,30 +27,41 @@
 -(id)init
 {
     self = [super init];
-    if(self)
+    if (self != nil)
     {
+        
     }
-    
     return self;
 }
-
+-(BOOL)IsConnectionAvailable
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    
+    return !(networkStatus == NotReachable);
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.mapView setShowsUserLocation:YES];
-    
-    self.locationManager = [[CLLocationManager alloc] init];
-    
-    [self.locationManager setDelegate:self];
-    
-    // we have to setup the location manager with permission in later iOS versions
-    if ([[self locationManager] respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [[self locationManager] requestWhenInUseAuthorization];
+    if([self IsConnectionAvailable] ==YES){
+        self.locationManager = [[CLLocationManager alloc] init];
+        
+        [self.locationManager setDelegate:self];
+        
+        
+        if ([[self locationManager] respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [[self locationManager] requestWhenInUseAuthorization];
+        }
+        
+        [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+        [self.locationManager startUpdatingLocation];
+        //[self.locationManager startMonitoringSignificantLocationChanges];
+        self.locationManager.distanceFilter = 100.0;
+        self.geo= [[Geolocation alloc] init];
+
     }
-    
-    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [self.locationManager startUpdatingLocation];
-    //[self.locationManager startMonitoringSignificantLocationChanges];
-    self.geo= [[Geolocation alloc] init];
+
     
     
 }
@@ -71,7 +83,7 @@
         
         [geo setLatitude:[NSString stringWithFormat:@"%.6f", location.coordinate.latitude]];
         [geo setLongitude:[NSString stringWithFormat:@"%.6f", location.coordinate.longitude]];
-        //NSLog(@" latitude %@",[geo latitude]);
+        NSLog(@" latitude %@",[geo latitude]);
         
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2*METERS_MILE, 2*METERS_MILE);
         [[self mapView] setRegion:viewRegion animated:YES];

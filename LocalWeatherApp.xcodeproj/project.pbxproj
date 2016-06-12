@@ -28,6 +28,7 @@
 		06A648951D0C45F900B650B0 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */; };
 		06A996F31D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A996F01D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.m */; };
 		06A996F41D0DC79F006B65ED /* WeatherEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A996F21D0DC79F006B65ED /* WeatherEntity.m */; };
+		06A996F71D0DCEAD006B65ED /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A996F61D0DCEAD006B65ED /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		06A996F01D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WeatherEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		06A996F11D0DC79F006B65ED /* WeatherEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherEntity.h; sourceTree = "<group>"; };
 		06A996F21D0DC79F006B65ED /* WeatherEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherEntity.m; sourceTree = "<group>"; };
+		06A996F51D0DCEAD006B65ED /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		06A996F61D0DCEAD006B65ED /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 		06A6484B1D0C383E00B650B0 /* LocalWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				06A996F51D0DCEAD006B65ED /* Reachability.h */,
+				06A996F61D0DCEAD006B65ED /* Reachability.m */,
 				069FB38D1D0D89C8003ECE21 /* View */,
 				06A6488D1D0C40C000B650B0 /* Controller */,
 				06A648861D0C3C4200B650B0 /* Model */,
@@ -361,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A996F71D0DCEAD006B65ED /* Reachability.m in Sources */,
 				06A6488C1D0C407D00B650B0 /* Weather.m in Sources */,
 				06A648891D0C3C5F00B650B0 /* Geolocation.m in Sources */,
 				06A6485A1D0C383E00B650B0 /* LocalWeatherApp.xcdatamodeld in Sources */,

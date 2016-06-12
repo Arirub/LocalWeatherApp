@@ -52,7 +52,6 @@
     iconSet=[[NSMutableDictionary alloc]init];
     [self createIconSetCodeDictionary];
     cityWeather=[[NSMutableArray alloc] init];
-    // [self loadCities];
     [self loadWeatherData :[self loadCities]];
     
     
@@ -65,17 +64,8 @@
 }
 -(void)refreshData
 {
-    
-    //Put your logic here
-    
     [self loadCities];
     [self.refreshControl endRefreshing];
-    
-    //reload table & remove refreshing image
-    /* UITableViewController *tableViewController = [[UITableViewController alloc] init];
-     tableViewController.tableView = self.tableView;
-     [self.tableView reloadData];
-     [tableViewController.refreshControl endRefreshing];*/
 }
 
 
@@ -90,12 +80,9 @@
 
 - (NSMutableDictionary *) loadCities{
     NSMutableDictionary *cityList=[[NSMutableDictionary alloc]init];
-    NSError *error;
+    
     
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    
-    
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"GeolocationEntity"];
     NSMutableArray *locations = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     NSDictionary *lastObj=[locations lastObject];
@@ -104,29 +91,35 @@
     NSString *radiusParam =[lastObj valueForKey:@"radius"];
     NSLog(@"radius in load Cities : %@", radiusParam);
     
+    NSError *error;
     NSString *url_string = [NSString stringWithFormat:@"%@%@,%@%@%@%@",@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=", latitudeParam, longitudeParam,@"&radius=",radiusParam,@"&types=city_hall&key=AIzaSyAvCspNjtqsE7lg7KEbIUxtlDFAY-8QwSY"];
     NSLog(@"url_string : %@", url_string);
     
     NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     
-    NSDictionary *jsonList=(NSDictionary*) [json valueForKey:@"results"];
-    NSString *vicinity;
-    
-    for (NSDictionary *dic in jsonList){
-        vicinity=(NSString*) [dic valueForKey:@"vicinity"];
-        NSArray *city =[[NSArray alloc] init];
+    if (error){
+        NSLog(@"error: %@",error.description);
+    }else{
+        NSDictionary *jsonList=(NSDictionary*) [json valueForKey:@"results"];
+        NSString *vicinity;
         
-        city = [vicinity componentsSeparatedByString:@","];
-        if ([city count]>1) {
-            NSString *trimmedCity = [[city objectAtIndex:1]stringByTrimmingCharactersInSet:
-                                     [NSCharacterSet whitespaceCharacterSet]];
+        for (NSDictionary *dic in jsonList){
+            vicinity=(NSString*) [dic valueForKey:@"vicinity"];
+            NSArray *city =[[NSArray alloc] init];
             
-            [cityList setObject:trimmedCity forKey:trimmedCity];
-            NSLog(@"name es : %@", trimmedCity);
+            city = [vicinity componentsSeparatedByString:@","];
+            if ([city count]>1) {
+                NSString *trimmedCity = [[city objectAtIndex:1]stringByTrimmingCharactersInSet:
+                                         [NSCharacterSet whitespaceCharacterSet]];
+                
+                [cityList setObject:trimmedCity forKey:trimmedCity];
+                NSLog(@"name es : %@", trimmedCity);
+            }
+            
+            
         }
-        
-        
+ 
     }
     
     return cityList;
@@ -153,77 +146,79 @@
         [weather setName:name];
         
         NSString *cityForUrlWithoutSpaces=[nameWithoutSpecialCharacters stringByReplacingOccurrencesOfString:@" " withString:@""];
-        
-        NSString *url_string = [NSString stringWithFormat: @"http://api.openweathermap.org/data/2.5/weather?q=%@&appid=46ae8cb55eaae08fd148a6a42f02e902", cityForUrlWithoutSpaces];
-        NSLog(@" urlstring es : %@", url_string);
-        NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSLog(@"reading data from city : %@", nameWithoutSpecialCharacters);
-        
-        NSString *responseCode  = [NSString stringWithFormat:@"%@", json[@"cod"]];
-        NSString *responseOK=@"200";
-        
-        if ([responseCode isEqualToString:responseOK]) {
-            [self readDataFromCities:json];
+        if(![cityForUrlWithoutSpaces isEqualToString:@""]){
+            NSString *url_string = [NSString stringWithFormat: @"http://api.openweathermap.org/data/2.5/weather?q=%@&appid=46ae8cb55eaae08fd148a6a42f02e902", cityForUrlWithoutSpaces];
+            NSLog(@" urlstring es : %@", url_string);
+            NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSLog(@"reading data from city : %@", nameWithoutSpecialCharacters);
+            
+            NSString *responseCode  = [NSString stringWithFormat:@"%@", json[@"cod"]];
+            NSString *responseOK=@"200";
+            
+            if ([responseCode isEqualToString:responseOK]) {
+                [self readDataFromCities:json];
+            }
+        }else{
+            NSLog(@"City does nos exist");
         }
-        
-        
         
     }
 }
 - (void) readDataFromCities:(NSDictionary *)jsonList {
     
-    NSDictionary *mainList =jsonList[@"main"];
-    
-    //NSLog(@"mainList es : %@", mainList);
-    
-    NSString *temp =mainList[@"temp"];
-    int tempInt=[self kelvinToCelsius:temp];
-    [weather setTemp:tempInt];
-    
-    NSString *temp_max =mainList[@"temp_max"];
-    int tempMaxInt=[self kelvinToCelsius:temp_max];
-    [weather setTemp_max:tempMaxInt];
-    //NSLog(@"tempmax es : %@", temp_max);
-    
-    NSString *temp_min =mainList[@"temp_min"];
-    int tempMinInt=[self kelvinToCelsius:temp_min];
-    [weather setTemp_min:tempMinInt];
-    //NSLog(@"tempmin es : %@", temp_min);
-    
-    NSDictionary *weatherData =jsonList[@"weather"];
-    NSString *description;
-    NSString *cod;
-    for (NSDictionary *mainDic in weatherData){
-        description = (NSString*) [mainDic valueForKey:@"description"];
-        cod = [NSString stringWithFormat:@"%@", [mainDic valueForKey:@"id"]];
-    }
-    // NSLog(@"description es : %@", description);
-    [weather setDescription:description];
-    [weather setCod:cod];
-    
-    NSString *urlimg=[self getImageFromCode:cod];
-    [weather setUrlIcon:urlimg];
-    
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSManagedObject *newWeatherEntity= [NSEntityDescription insertNewObjectForEntityForName:@"WeatherEntity" inManagedObjectContext:context];
-    [newWeatherEntity setValue:[weather name] forKey:@"city"];
-    [newWeatherEntity setValue:[weather description]  forKey:@"weatherDescription"];
-    [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp]]forKey:@"temp"];
-    [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp_max]]forKey:@"tempMax"];
-    [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp_min]]forKey:@"tempMin"];
-    
-    
-    NSError  *saveError=nil;
-    
-    if (![context save:&saveError]){
-        NSLog(@"Save didnt complete successfully. Error: %@", [saveError localizedDescription]);
-    }
-    
-    
-    
-    //NSLog(@"weather es : %@", weather);
-    [cityWeather addObject:weather];
+    if([jsonList count] > 0){
+        NSDictionary *mainList =jsonList[@"main"];
+        
+        //NSLog(@"mainList es : %@", mainList);
+        
+        NSString *temp =mainList[@"temp"];
+        int tempInt=[self kelvinToCelsius:temp];
+        [weather setTemp:tempInt];
+        
+        NSString *temp_max =mainList[@"temp_max"];
+        int tempMaxInt=[self kelvinToCelsius:temp_max];
+        [weather setTemp_max:tempMaxInt];
+        //NSLog(@"tempmax es : %@", temp_max);
+        
+        NSString *temp_min =mainList[@"temp_min"];
+        int tempMinInt=[self kelvinToCelsius:temp_min];
+        [weather setTemp_min:tempMinInt];
+        //NSLog(@"tempmin es : %@", temp_min);
+        
+        NSDictionary *weatherData =jsonList[@"weather"];
+        NSString *description;
+        NSString *cod;
+        for (NSDictionary *mainDic in weatherData){
+            description = (NSString*) [mainDic valueForKey:@"description"];
+            cod = [NSString stringWithFormat:@"%@", [mainDic valueForKey:@"id"]];
+        }
+        // NSLog(@"description es : %@", description);
+        [weather setDescription:description];
+        [weather setCod:cod];
+        
+        NSString *urlimg=[self getImageFromCode:cod];
+        [weather setUrlIcon:urlimg];
+        
+        NSManagedObjectContext *context = [self managedObjectContext];
+        NSManagedObject *newWeatherEntity= [NSEntityDescription insertNewObjectForEntityForName:@"WeatherEntity" inManagedObjectContext:context];
+        [newWeatherEntity setValue:[weather name] forKey:@"city"];
+        [newWeatherEntity setValue:[weather description]  forKey:@"weatherDescription"];
+        [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp]]forKey:@"temp"];
+        [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp_max]]forKey:@"tempMax"];
+        [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp_min]]forKey:@"tempMin"];
+        
+        
+        NSError  *saveError=nil;
+        
+        if (![context save:&saveError]){
+            NSLog(@"Save didnt complete successfully. Error: %@", [saveError localizedDescription]);
+        }
+  
+        [cityWeather addObject:weather];
+    }else{
+        NSLog(@"JSON is empty");
+    };
     
 }
 -(NSString *) getImageFromCode:(NSString * )imgCode {
@@ -375,6 +370,9 @@
 {
     return 100;
 }
+- (IBAction)goBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 /*
  // Override to support conditional editing of the table view.
@@ -420,7 +418,5 @@
  }
  */
 
-- (IBAction)goBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 @end
