@@ -99,8 +99,15 @@
     [newLocation setValue:[geo latitude] forKey:@"latitude"];
     [newLocation setValue:[geo longitude]  forKey:@"longitude"];
     [newLocation setValue:radiusValue forKey:@"radius"];
+    NSError  *saveError=nil;
+    
+    if (![context save:&saveError]){
+        NSLog(@"Save didnt complete successfully. Error: %@", [saveError localizedDescription]);
+    }
+    
+    
     [self performSegueWithIdentifier:@"idSegueTableView" sender:self];
-    NSLog(@"44444444444444444444radius %@ ",radiusValue);
+    
 }
 
 
