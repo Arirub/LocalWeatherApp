@@ -26,6 +26,8 @@
 		06A648901D0C40DF00B650B0 /* WeatherTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A6488F1D0C40DF00B650B0 /* WeatherTableViewController.m */; };
 		06A648941D0C45F900B650B0 /* WeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648921D0C45F900B650B0 /* WeatherTableViewCell.m */; };
 		06A648951D0C45F900B650B0 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */; };
+		06A996F31D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A996F01D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.m */; };
+		06A996F41D0DC79F006B65ED /* WeatherEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A996F21D0DC79F006B65ED /* WeatherEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,10 @@
 		06A648911D0C45F900B650B0 /* WeatherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherTableViewCell.h; sourceTree = "<group>"; };
 		06A648921D0C45F900B650B0 /* WeatherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTableViewCell.m; sourceTree = "<group>"; };
 		06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
+		06A996EF1D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WeatherEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		06A996F01D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WeatherEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		06A996F11D0DC79F006B65ED /* WeatherEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherEntity.h; sourceTree = "<group>"; };
+		06A996F21D0DC79F006B65ED /* WeatherEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,10 +157,6 @@
 				06A6485B1D0C383E00B650B0 /* Assets.xcassets */,
 				06A648601D0C383E00B650B0 /* Info.plist */,
 				06A648581D0C383E00B650B0 /* LocalWeatherApp.xcdatamodeld */,
-				069FB3871D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.h */,
-				069FB3881D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m */,
-				069FB3891D0D630D003ECE21 /* GeolocationEntity.h */,
-				069FB38A1D0D630D003ECE21 /* GeolocationEntity.m */,
 				06A6484C1D0C383E00B650B0 /* Supporting Files */,
 			);
 			path = LocalWeatherApp;
@@ -190,6 +192,7 @@
 		06A648861D0C3C4200B650B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				06A996EB1D0DC4B8006B65ED /* CoreData */,
 				06A648871D0C3C5F00B650B0 /* Geolocation.h */,
 				06A648881D0C3C5F00B650B0 /* Geolocation.m */,
 				06A6488A1D0C407C00B650B0 /* Weather.h */,
@@ -209,6 +212,21 @@
 				06A648921D0C45F900B650B0 /* WeatherTableViewCell.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		06A996EB1D0DC4B8006B65ED /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				069FB3871D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.h */,
+				069FB3881D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m */,
+				069FB3891D0D630D003ECE21 /* GeolocationEntity.h */,
+				069FB38A1D0D630D003ECE21 /* GeolocationEntity.m */,
+				06A996EF1D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.h */,
+				06A996F01D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.m */,
+				06A996F11D0DC79F006B65ED /* WeatherEntity.h */,
+				06A996F21D0DC79F006B65ED /* WeatherEntity.m */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,9 +368,11 @@
 				06A648541D0C383E00B650B0 /* ViewController.m in Sources */,
 				06A648941D0C45F900B650B0 /* WeatherTableViewCell.m in Sources */,
 				06A648511D0C383E00B650B0 /* AppDelegate.m in Sources */,
+				06A996F31D0DC79F006B65ED /* WeatherEntity+CoreDataProperties.m in Sources */,
 				069FB38C1D0D630D003ECE21 /* GeolocationEntity.m in Sources */,
 				06A6484E1D0C383E00B650B0 /* main.m in Sources */,
 				06A648901D0C40DF00B650B0 /* WeatherTableViewController.m in Sources */,
+				06A996F41D0DC79F006B65ED /* WeatherEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

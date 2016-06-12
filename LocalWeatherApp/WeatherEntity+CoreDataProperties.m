@@ -1,5 +1,5 @@
 //
-//  GeolocationEntity+CoreDataProperties.m
+//  WeatherEntity+CoreDataProperties.m
 //  LocalWeatherApp
 //
 //  Created by Ariane Rubio on 12/6/16.
@@ -9,12 +9,14 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "GeolocationEntity+CoreDataProperties.h"
+#import "WeatherEntity+CoreDataProperties.h"
 
-@implementation GeolocationEntity (CoreDataProperties)
+@implementation WeatherEntity (CoreDataProperties)
 
-@dynamic latitude;
-@dynamic longitude;
-@dynamic radius;
+@dynamic city;
+@dynamic temp;
+@dynamic tempMin;
+@dynamic tempMax;
+@dynamic weatherDescription;
 
 @end

@@ -52,7 +52,7 @@
     iconSet=[[NSMutableDictionary alloc]init];
     [self createIconSetCodeDictionary];
     cityWeather=[[NSMutableArray alloc] init];
-   // [self loadCities];
+    // [self loadCities];
     [self loadWeatherData :[self loadCities]];
     
     
@@ -82,7 +82,7 @@
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
- if ([delegate performSelector:@selector(managedObjectContext)]) {
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
         context = [delegate managedObjectContext];
     }
     return context;
@@ -141,9 +141,9 @@
         
         NSError *error;
         NSString *name=[citiesList objectForKey:key];
-
-       
-      
+        
+        
+        
         NSData *dataTransformation = [name dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         NSString *nameWithoutSpecialCharacters = [[NSString alloc] initWithData:dataTransformation encoding:NSASCIIStringEncoding];
         NSLog(@"%@", nameWithoutSpecialCharacters);
@@ -153,8 +153,8 @@
         [weather setName:name];
         
         NSString *cityForUrlWithoutSpaces=[nameWithoutSpecialCharacters stringByReplacingOccurrencesOfString:@" " withString:@""];
-       
-       NSString *url_string = [NSString stringWithFormat: @"http://api.openweathermap.org/data/2.5/weather?q=%@&appid=46ae8cb55eaae08fd148a6a42f02e902", cityForUrlWithoutSpaces];
+        
+        NSString *url_string = [NSString stringWithFormat: @"http://api.openweathermap.org/data/2.5/weather?q=%@&appid=46ae8cb55eaae08fd148a6a42f02e902", cityForUrlWithoutSpaces];
         NSLog(@" urlstring es : %@", url_string);
         NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
@@ -198,12 +198,29 @@
         description = (NSString*) [mainDic valueForKey:@"description"];
         cod = [NSString stringWithFormat:@"%@", [mainDic valueForKey:@"id"]];
     }
-   // NSLog(@"description es : %@", description);
+    // NSLog(@"description es : %@", description);
     [weather setDescription:description];
     [weather setCod:cod];
     
     NSString *urlimg=[self getImageFromCode:cod];
     [weather setUrlIcon:urlimg];
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObject *newWeatherEntity= [NSEntityDescription insertNewObjectForEntityForName:@"WeatherEntity" inManagedObjectContext:context];
+    [newWeatherEntity setValue:[weather name] forKey:@"city"];
+    [newWeatherEntity setValue:[weather description]  forKey:@"weatherDescription"];
+    [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp]]forKey:@"temp"];
+    [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp_max]]forKey:@"tempMax"];
+    [newWeatherEntity setValue:[NSString stringWithFormat:@"%d",[weather temp_min]]forKey:@"tempMin"];
+    
+    
+    NSError  *saveError=nil;
+    
+    if (![context save:&saveError]){
+        NSLog(@"Save didnt complete successfully. Error: %@", [saveError localizedDescription]);
+    }
+    
+    
     
     //NSLog(@"weather es : %@", weather);
     [cityWeather addObject:weather];

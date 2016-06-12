@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSString *latitude;
 @property (nullable, nonatomic, retain) NSString *longitude;
-@property (nullable, nonatomic, retain) NSString *radio;
+@property (nullable, nonatomic, retain) NSString *radius;
 
 @end
 

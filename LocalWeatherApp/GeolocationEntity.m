@@ -10,6 +10,8 @@
 
 @implementation GeolocationEntity
 
-// Insert code here to add functionality to your managed object subclass
+@synthesize latitude = _latitude;
+@synthesize longitude = _longitude;
+@synthesize radius= _radius;
 
 @end
