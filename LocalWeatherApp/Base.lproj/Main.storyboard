@@ -21,16 +21,29 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="406"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-tc-XhD">
-                                <rect key="frame" x="247" y="457" width="106" height="30"/>
+                                <rect key="frame" x="233" y="512" width="106" height="30"/>
                                 <state key="normal" title="Check Weather"/>
                                 <connections>
                                     <action selector="checkWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1K-Bk-p0k"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="9" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-pL-I7u">
+                                <rect key="frame" x="321" y="443" width="247" height="31"/>
+                                <connections>
+                                    <action selector="changeRadius:" destination="BYZ-38-t0r" eventType="valueChanged" id="0ft-Ww-c69"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLY-ln-wzv">
+                                <rect key="frame" x="79" y="447" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="labelDistance" destination="JLY-ln-wzv" id="2pA-jE-lqd"/>
                         <outlet property="mapView" destination="g4O-ua-d5A" id="dF4-p6-aQX"/>
                         <segue destination="Eh8-gs-mkp" kind="show" identifier="idSegueTableView" id="Xb4-gb-gjJ"/>
                     </connections>

@@ -49,7 +49,7 @@
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [self.locationManager startUpdatingLocation];
     //[self.locationManager startMonitoringSignificantLocationChanges];
-    
+    self.geo= [[Geolocation alloc] init];
     
     
 }
@@ -66,41 +66,11 @@
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *location = locations.lastObject;
     
-    self.geo= [[Geolocation alloc] init];
+    
     
     [geo setLatitude:[NSString stringWithFormat:@"%.6f", location.coordinate.latitude]];
     [geo setLongitude:[NSString stringWithFormat:@"%.6f", location.coordinate.longitude]];
     NSLog(@" latitude %@",[geo latitude]);
-    
-    
-    //AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    /*NSManagedObjectContext *context = [self managedObjectContext];
-    
-    // Create a new managed object
-    NSManagedObject *newLocation= [NSEntityDescription insertNewObjectForEntityForName:@"GeolocationEntity" inManagedObjectContext:context];
-    [newLocation setValue:[NSString stringWithFormat:@"%.6f", location.coordinate.latitude] forKey:@"latitude"];
-    [newLocation setValue:[NSString stringWithFormat:@"%.6f", location.coordinate.longitude] forKey:@"longitude"];
-    [newLocation setValue:@"10000" forKey:@"radio"];
-    
-    NSError *error = nil;
-    // Save the object to persistent store
-    if (![context save:&error]) {
-        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-       }
-        
-        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"GeolocationEntity"];
-        self.locations = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-        
-        
-        */
-        
-    
-    
-    
-    
-    
-    
     
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2*METERS_MILE, 2*METERS_MILE);
     [[self mapView] setRegion:viewRegion animated:YES];
@@ -111,39 +81,37 @@
 
 
 - (IBAction)checkWeather:(id)sender {
-    //WeatherTableViewController tableView=[segue idSegueTableView];
- //   [self performSegueWithIdentifier:@"idSegueTableView" sender:self];
+    
+    NSString *radiusValue;
+    if([geo radius] ==nil){
+        radiusValue=@"10000";
+    }else{
+        radiusValue=[geo radius];
+    }
     
     NSManagedObjectContext *context = [self managedObjectContext];
-    
-    // Create a new managed object
     NSManagedObject *newLocation= [NSEntityDescription insertNewObjectForEntityForName:@"GeolocationEntity" inManagedObjectContext:context];
     [newLocation setValue:[geo latitude] forKey:@"latitude"];
     [newLocation setValue:[geo longitude]  forKey:@"longitude"];
-    [newLocation setValue:@"10000" forKey:@"radius"];
+    [newLocation setValue:radiusValue forKey:@"radius"];
     [self performSegueWithIdentifier:@"idSegueTableView" sender:self];
 }
-/*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-    if([segue.identifier isEqualToString:@"idSegueTableView"] ){
-        WeatherTableViewController *vc = (WeatherTableViewController *)  segue.destinationViewController;
-        //[vc setLocation:geoLoc];   //in example someProperty is a BOOL
-        vc.prueba=@"aaaaaaaaaaaaaaaaaaaaa";
-    }
-    else {
-        //Do whatever accordingly
-        
-    }
-    
-    
-}*/
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)sliderChange:(UISlider *)sender {
+}
+- (IBAction)changeRadius:(id)sender {
+    NSLog(@"i am here %@",@"drxtyxdrt");
+    UISlider *slider= (UISlider *)sender;
+    int distanceInt=(int)slider.value;
+    self.labelDistance.text=[NSString stringWithFormat:@"%d", distanceInt];
+    [geo setRadius:[NSString stringWithFormat:@"%d", distanceInt*1000]];
+    NSLog(@"i am here with raidus %d",distanceInt);
+}
 @end

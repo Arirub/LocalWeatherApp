@@ -14,8 +14,16 @@
 @interface ViewController : UIViewController
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet UILabel *labelDistance;
+
+
+- (IBAction)changeRadius:(id)sender;
+
+
+
 @property(retain)  Geolocation* geo;
 - (IBAction)checkWeather:(id)sender;
+
 
 @end
 
