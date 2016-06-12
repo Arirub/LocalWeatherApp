@@ -41,6 +41,7 @@
     
     return !(networkStatus == NotReachable);
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.mapView setShowsUserLocation:YES];
@@ -48,7 +49,6 @@
         self.locationManager = [[CLLocationManager alloc] init];
         
         [self.locationManager setDelegate:self];
-        
         
         if ([[self locationManager] respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [[self locationManager] requestWhenInUseAuthorization];
@@ -59,12 +59,9 @@
         //[self.locationManager startMonitoringSignificantLocationChanges];
         self.locationManager.distanceFilter = 100.0;
         self.geo= [[Geolocation alloc] init];
-
     }
-
-    
-    
 }
+
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
@@ -73,7 +70,6 @@
     }
     return context;
 }
-
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     if(locations!=nil){
@@ -89,13 +85,11 @@
         [[self mapView] setRegion:viewRegion animated:YES];
         
     }
-    
-    
 }
+
 -(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"Error %@",[error localizedDescription]);
 }
-
 
 - (IBAction)checkWeather:(id)sender {
     
@@ -111,23 +105,20 @@
     [newLocation setValue:[geo latitude] forKey:@"latitude"];
     [newLocation setValue:[geo longitude]  forKey:@"longitude"];
     [newLocation setValue:radiusValue forKey:@"radius"];
+    
     NSError  *saveError=nil;
     
     if (![context save:&saveError]){
         NSLog(@"Save didnt complete successfully. Error: %@", [saveError localizedDescription]);
     }
     
-    
     [self performSegueWithIdentifier:@"idSegueTableView" sender:self];
-    
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (IBAction)sliderChange:(UISlider *)sender {
 }
