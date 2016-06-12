@@ -27,7 +27,7 @@
 {
     self = [super init];
     if(self)
-    {      
+    {
     }
     
     return self;
@@ -64,20 +64,25 @@
 
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = locations.lastObject;
-    
-    
-    
-    [geo setLatitude:[NSString stringWithFormat:@"%.6f", location.coordinate.latitude]];
-    [geo setLongitude:[NSString stringWithFormat:@"%.6f", location.coordinate.longitude]];
-    NSLog(@" latitude %@",[geo latitude]);
-    
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2*METERS_MILE, 2*METERS_MILE);
-    [[self mapView] setRegion:viewRegion animated:YES];
+    if(locations!=nil){
+        CLLocation *location = locations.lastObject;
+        
+        
+        
+        [geo setLatitude:[NSString stringWithFormat:@"%.6f", location.coordinate.latitude]];
+        [geo setLongitude:[NSString stringWithFormat:@"%.6f", location.coordinate.longitude]];
+        //NSLog(@" latitude %@",[geo latitude]);
+        
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2*METERS_MILE, 2*METERS_MILE);
+        [[self mapView] setRegion:viewRegion animated:YES];
+        
+    }
     
     
 }
-
+-(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"Error %@",[error localizedDescription]);
+}
 
 
 - (IBAction)checkWeather:(id)sender {
@@ -95,6 +100,7 @@
     [newLocation setValue:[geo longitude]  forKey:@"longitude"];
     [newLocation setValue:radiusValue forKey:@"radius"];
     [self performSegueWithIdentifier:@"idSegueTableView" sender:self];
+    NSLog(@"44444444444444444444radius %@ ",radiusValue);
 }
 
 
@@ -107,11 +113,10 @@
 - (IBAction)sliderChange:(UISlider *)sender {
 }
 - (IBAction)changeRadius:(id)sender {
-    NSLog(@"i am here %@",@"drxtyxdrt");
     UISlider *slider= (UISlider *)sender;
     int distanceInt=(int)slider.value;
     self.labelDistance.text=[NSString stringWithFormat:@"%d", distanceInt];
     [geo setRadius:[NSString stringWithFormat:@"%d", distanceInt*1000]];
-    NSLog(@"i am here with raidus %d",distanceInt);
+    // NSLog(@"i am here with raidus %d",distanceInt);
 }
 @end

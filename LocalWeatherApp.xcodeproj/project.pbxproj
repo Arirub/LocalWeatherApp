@@ -111,6 +111,7 @@
 		069FB38D1D0D89C8003ECE21 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				06A6485D1D0C383E00B650B0 /* LaunchScreen.storyboard */,
 				06A648551D0C383E00B650B0 /* Main.storyboard */,
 				06A648931D0C45F900B650B0 /* WeatherTableViewCell.xib */,
 			);
@@ -148,7 +149,6 @@
 				06A6484F1D0C383E00B650B0 /* AppDelegate.h */,
 				06A648501D0C383E00B650B0 /* AppDelegate.m */,
 				06A6485B1D0C383E00B650B0 /* Assets.xcassets */,
-				06A6485D1D0C383E00B650B0 /* LaunchScreen.storyboard */,
 				06A648601D0C383E00B650B0 /* Info.plist */,
 				06A648581D0C383E00B650B0 /* LocalWeatherApp.xcdatamodeld */,
 				069FB3871D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.h */,

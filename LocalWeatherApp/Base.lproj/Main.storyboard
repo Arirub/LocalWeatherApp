@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,58 +14,67 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-ua-d5A">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="406"/>
-                            </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-tc-XhD">
-                                <rect key="frame" x="233" y="512" width="106" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-tc-XhD">
+                                <rect key="frame" x="107" y="505" width="106" height="30"/>
                                 <state key="normal" title="Check Weather"/>
                                 <connections>
                                     <action selector="checkWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1K-Bk-p0k"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="9" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-pL-I7u">
-                                <rect key="frame" x="321" y="443" width="247" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="9" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-pL-I7u">
+                                <rect key="frame" x="148" y="433" width="142" height="31"/>
                                 <connections>
                                     <action selector="changeRadius:" destination="BYZ-38-t0r" eventType="valueChanged" id="0ft-Ww-c69"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLY-ln-wzv">
-                                <rect key="frame" x="79" y="447" width="97" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="sef" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLY-ln-wzv">
+                                <rect key="frame" x="28" y="437" width="97" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-ua-d5A">
+                                <rect key="frame" x="0.0" y="20" width="320" height="386"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sQh-tc-XhD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Fb-ON-WTU"/>
+                            <constraint firstItem="cAO-pL-I7u" firstAttribute="leading" secondItem="JLY-ln-wzv" secondAttribute="trailing" constant="25" id="9Bz-jZ-nad"/>
+                            <constraint firstItem="cAO-pL-I7u" firstAttribute="top" secondItem="g4O-ua-d5A" secondAttribute="bottom" constant="27" id="Zsm-EP-5pF"/>
+                            <constraint firstItem="sQh-tc-XhD" firstAttribute="top" secondItem="JLY-ln-wzv" secondAttribute="bottom" constant="47" id="dH5-GN-5sp"/>
+                            <constraint firstItem="g4O-ua-d5A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hcR-SJ-Eoy"/>
+                            <constraint firstItem="JLY-ln-wzv" firstAttribute="top" secondItem="g4O-ua-d5A" secondAttribute="bottom" constant="31" id="lVu-fb-gjn"/>
+                            <constraint firstItem="sQh-tc-XhD" firstAttribute="top" secondItem="cAO-pL-I7u" secondAttribute="bottom" constant="42" id="zBe-Bh-F0T"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="labelDistance" destination="JLY-ln-wzv" id="2pA-jE-lqd"/>
                         <outlet property="mapView" destination="g4O-ua-d5A" id="dF4-p6-aQX"/>
-                        <segue destination="Eh8-gs-mkp" kind="show" identifier="idSegueTableView" id="Xb4-gb-gjJ"/>
+                        <segue destination="Eh8-gs-mkp" kind="modal" identifier="idSegueTableView" id="Xb4-gb-gjJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="241" y="515"/>
+            <point key="canvasLocation" x="127" y="498"/>
         </scene>
         <!--Weather Table View Controller-->
         <scene sceneID="Qzf-3g-bEN">
             <objects>
                 <tableViewController id="8HR-0K-usa" customClass="WeatherTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iRo-IT-DU6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dWJ-hT-FRC">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dWJ-hT-FRC" id="96x-F3-GmF">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -83,10 +92,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="tas-Jg-EFf">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMp-Kg-bkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1730" y="515"/>
+            <point key="canvasLocation" x="922.66666666666663" y="487.5333333333333"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0qF-J8-Dto">
@@ -104,7 +116,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oni-HM-S2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="515"/>
+            <point key="canvasLocation" x="489.59999999999997" y="487.5333333333333"/>
         </scene>
     </scenes>
 </document>
