@@ -24,14 +24,8 @@
                                     <action selector="checkWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1K-Bk-p0k"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-pL-I7u">
-                                <rect key="frame" x="148" y="433" width="142" height="31"/>
-                                <connections>
-                                    <action selector="changeRadius:" destination="BYZ-38-t0r" eventType="valueChanged" id="0ft-Ww-c69"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLY-ln-wzv">
-                                <rect key="frame" x="28" y="437" width="97" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10 km " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLY-ln-wzv">
+                                <rect key="frame" x="29" y="466" width="97" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -39,16 +33,29 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-ua-d5A">
                                 <rect key="frame" x="0.0" y="20" width="320" height="386"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Select the radio to get the nearby weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBX-H4-EHX">
+                                <rect key="frame" x="0.0" y="424" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-pL-I7u">
+                                <rect key="frame" x="173" y="462" width="142" height="31"/>
+                                <connections>
+                                    <action selector="changeRadius:" destination="BYZ-38-t0r" eventType="valueChanged" id="0ft-Ww-c69"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sQh-tc-XhD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Fb-ON-WTU"/>
+                            <constraint firstItem="sQh-tc-XhD" firstAttribute="top" secondItem="JLY-ln-wzv" secondAttribute="bottom" constant="18" id="7ph-gh-Dk9"/>
                             <constraint firstItem="cAO-pL-I7u" firstAttribute="leading" secondItem="JLY-ln-wzv" secondAttribute="trailing" constant="25" id="9Bz-jZ-nad"/>
-                            <constraint firstItem="cAO-pL-I7u" firstAttribute="top" secondItem="g4O-ua-d5A" secondAttribute="bottom" constant="27" id="Zsm-EP-5pF"/>
-                            <constraint firstItem="sQh-tc-XhD" firstAttribute="top" secondItem="JLY-ln-wzv" secondAttribute="bottom" constant="47" id="dH5-GN-5sp"/>
+                            <constraint firstItem="gBX-H4-EHX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Axl-R0-c3q"/>
+                            <constraint firstItem="JLY-ln-wzv" firstAttribute="top" secondItem="gBX-H4-EHX" secondAttribute="bottom" constant="21" id="Mhc-rH-g83"/>
+                            <constraint firstItem="sQh-tc-XhD" firstAttribute="top" secondItem="cAO-pL-I7u" secondAttribute="bottom" constant="13" id="a14-bn-hcZ"/>
                             <constraint firstItem="g4O-ua-d5A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hcR-SJ-Eoy"/>
-                            <constraint firstItem="JLY-ln-wzv" firstAttribute="top" secondItem="g4O-ua-d5A" secondAttribute="bottom" constant="31" id="lVu-fb-gjn"/>
-                            <constraint firstItem="sQh-tc-XhD" firstAttribute="top" secondItem="cAO-pL-I7u" secondAttribute="bottom" constant="42" id="zBe-Bh-F0T"/>
+                            <constraint firstItem="cAO-pL-I7u" firstAttribute="top" secondItem="gBX-H4-EHX" secondAttribute="bottom" constant="17" id="lUW-Eu-K31"/>
+                            <constraint firstItem="gBX-H4-EHX" firstAttribute="top" secondItem="g4O-ua-d5A" secondAttribute="bottom" constant="18" id="u6a-bi-zDd"/>
                         </constraints>
                     </view>
                     <connections>

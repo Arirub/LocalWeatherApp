@@ -349,6 +349,7 @@
     cell.labelTempMax.text=[@"max: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_max]];
     cell.imageView.image= [UIImage imageNamed:dataWeather.urlIcon];
     cell.userInteractionEnabled = NO;
+    cell.imageView.contentMode=UIViewContentModeCenter;
     
     return cell;
 }
