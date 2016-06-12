@@ -125,8 +125,8 @@
 - (IBAction)changeRadius:(id)sender {
     UISlider *slider= (UISlider *)sender;
     int distanceInt=(int)slider.value;
-    self.labelDistance.text=[NSString stringWithFormat:@"%d", distanceInt];
+    self.labelDistance.text=[NSString stringWithFormat:@"%d kms", distanceInt];
     [geo setRadius:[NSString stringWithFormat:@"%d", distanceInt*1000]];
-    // NSLog(@"i am here with raidus %d",distanceInt);
 }
+
 @end
