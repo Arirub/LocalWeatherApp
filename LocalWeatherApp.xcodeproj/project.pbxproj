@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		069FB38B1D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 069FB3881D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m */; };
+		069FB38C1D0D630D003ECE21 /* GeolocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 069FB38A1D0D630D003ECE21 /* GeolocationEntity.m */; };
 		06A6484E1D0C383E00B650B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A6484D1D0C383E00B650B0 /* main.m */; };
 		06A648511D0C383E00B650B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648501D0C383E00B650B0 /* AppDelegate.m */; };
 		06A648541D0C383E00B650B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A648531D0C383E00B650B0 /* ViewController.m */; };
@@ -44,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		069FB3871D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeolocationEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		069FB3881D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GeolocationEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		069FB3891D0D630D003ECE21 /* GeolocationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationEntity.h; sourceTree = "<group>"; };
+		069FB38A1D0D630D003ECE21 /* GeolocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocationEntity.m; sourceTree = "<group>"; };
 		06A648491D0C383E00B650B0 /* LocalWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A6484D1D0C383E00B650B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06A6484F1D0C383E00B650B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -139,6 +145,10 @@
 				06A6485D1D0C383E00B650B0 /* LaunchScreen.storyboard */,
 				06A648601D0C383E00B650B0 /* Info.plist */,
 				06A648581D0C383E00B650B0 /* LocalWeatherApp.xcdatamodeld */,
+				069FB3871D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.h */,
+				069FB3881D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m */,
+				069FB3891D0D630D003ECE21 /* GeolocationEntity.h */,
+				069FB38A1D0D630D003ECE21 /* GeolocationEntity.m */,
 				06A6484C1D0C383E00B650B0 /* Supporting Files */,
 			);
 			path = LocalWeatherApp;
@@ -328,9 +338,11 @@
 				06A6488C1D0C407D00B650B0 /* Weather.m in Sources */,
 				06A648891D0C3C5F00B650B0 /* Geolocation.m in Sources */,
 				06A6485A1D0C383E00B650B0 /* LocalWeatherApp.xcdatamodeld in Sources */,
+				069FB38B1D0D630D003ECE21 /* GeolocationEntity+CoreDataProperties.m in Sources */,
 				06A648541D0C383E00B650B0 /* ViewController.m in Sources */,
 				06A648941D0C45F900B650B0 /* WeatherTableViewCell.m in Sources */,
 				06A648511D0C383E00B650B0 /* AppDelegate.m in Sources */,
+				069FB38C1D0D630D003ECE21 /* GeolocationEntity.m in Sources */,
 				06A6484E1D0C383E00B650B0 /* main.m in Sources */,
 				06A648901D0C40DF00B650B0 /* WeatherTableViewController.m in Sources */,
 			);
@@ -558,6 +570,7 @@
 				06A6487B1D0C383E00B650B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06A6487C1D0C383E00B650B0 /* Build configuration list for PBXNativeTarget "LocalWeatherAppTests" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +579,7 @@
 				06A6487E1D0C383E00B650B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06A6487F1D0C383E00B650B0 /* Build configuration list for PBXNativeTarget "LocalWeatherAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -574,6 +588,7 @@
 				06A648811D0C383E00B650B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

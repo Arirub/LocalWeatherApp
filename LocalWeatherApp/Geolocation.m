@@ -12,5 +12,6 @@
 
 @synthesize latitude = _latitude;
 @synthesize longitude = _longitude;
+@synthesize radius= _radius;
 
 @end

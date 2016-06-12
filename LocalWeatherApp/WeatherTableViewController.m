@@ -9,6 +9,10 @@
 #import "WeatherTableViewController.h"
 #import "Weather.h"
 #import "WeatherTableViewCell.h"
+#import "Geolocation.h"
+#import "AppDelegate.h"
+#import "GeolocationEntity.h"
+
 
 
 @interface WeatherTableViewController ()<UITableViewDelegate, UITableViewDataSource>{
@@ -16,11 +20,16 @@
     NSMutableArray *cityWeather;
     NSMutableDictionary *iconSet;
     Weather *weather;
+    //Geolocation *geoloc;
+    //ViewController *view;
+    
 }
+
 @end
 
 @implementation WeatherTableViewController
-
+@synthesize geolocview;
+@synthesize prueba;
 - (void)viewDidLoad {
     [super viewDidLoad];
     iconSet=[[NSMutableDictionary alloc]init];
@@ -28,6 +37,7 @@
     cityWeather=[[NSMutableArray alloc] init];
     [self loadVicinity];
     [self loadWeatherData :[self loadVicinity]];
+    
     
     self.title=@"Weather of the nearest cities";
     
@@ -37,10 +47,29 @@
     
 }
 
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
+
 - (NSMutableDictionary *) loadVicinity{
     NSMutableDictionary *cityList=[[NSMutableDictionary alloc]init];
     NSError *error;
-    NSString *url_string = [NSString stringWithFormat: @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.3757,8.6911&radius=10000&types=city_hall&key=AIzaSyAvCspNjtqsE7lg7KEbIUxtlDFAY-8QwSY"];
+
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"GeolocationEntity"];
+    NSMutableArray *locations = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSDictionary *lastObj=[locations lastObject];
+    NSString *latitudeParam =[lastObj valueForKey:@"latitude"];
+    NSString *longitudeParam =[lastObj valueForKey:@"longitude"];
+    NSString *radiusParam =[lastObj valueForKey:@"radius"];
+    
+    NSString *url_string = [NSString stringWithFormat:@"%@%@,%@%@%@%@",@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=", latitudeParam, longitudeParam,@"&radius=",radiusParam,@"&types=city_hall&key=AIzaSyAvCspNjtqsE7lg7KEbIUxtlDFAY-8QwSY"];
+    NSLog(@"url_string : %@", url_string);
     
     NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
@@ -52,7 +81,6 @@
         vicinity=(NSString*) [dic valueForKey:@"vicinity"];
         NSArray *city =[[NSArray alloc] init];
         city = [vicinity componentsSeparatedByString:@","];
-        //NSString *t = [city objectAtIndex:1];
         
         NSString *trimmedCity = [[city objectAtIndex:1]stringByTrimmingCharactersInSet:
                                  [NSCharacterSet whitespaceCharacterSet]];
@@ -64,6 +92,9 @@
     
     return cityList;
 }
+
+
+
 - (void) loadWeatherData:(NSMutableDictionary *)citiesList{
     
     for (id key in citiesList){
@@ -109,9 +140,7 @@
     [weather setTemp_min:tempMinInt];
     NSLog(@"tempmin es : %@", temp_min);
     
-    // NSDictionary *weatherJson=(NSDictionary*) [dic valueForKey:@"weather"];
     NSDictionary *weatherData =jsonList[@"weather"];
-    //NSString *description =weatherData[@"description"];
     NSString *description;
     NSString *cod;
     for (NSDictionary *mainDic in weatherData){
@@ -121,31 +150,29 @@
     NSLog(@"description es : %@", description);
     [weather setDescription:description];
     [weather setCod:cod];
-   
+    
     NSString *urlimg=[self getImageFromCode:cod];
     [weather setUrlIcon:urlimg];
-
+    
     //NSLog(@"weather es : %@", weather);
     [cityWeather addObject:weather];
     
 }
 -(NSString *) getImageFromCode:(NSString * )imgCode {
     
-    //NSString *imgNumber=[NSString stringWithFormat:@"%@", [mainDic valueForKey:@"id"]];
     NSString *valueImg=[iconSet objectForKey:imgCode ];
     
     NSLog(@"valueImg %@",valueImg );
     NSString *combinedURL = [NSString stringWithFormat:@"%@%@%@",@"icons/", valueImg, @"d.png"];
     
     NSLog(@"combinedURL %@",combinedURL );
-   // day http://openweathermap.org/img/w/+Numero+d.png  cambia solo la d
-   // night http://openweathermap.org/img/w/+Numero+n.png cambia solo la nnil
+
     
     return combinedURL;
 }
 - (void) createIconSetCodeDictionary {
     
-            //Group 2xx: Thunderstorm
+    //Group 2xx: Thunderstorm
     [iconSet setObject:@"11" forKey:@"200"];
     [iconSet setObject:@"11" forKey:@"201"];
     [iconSet setObject:@"11" forKey:@"202"];
@@ -242,19 +269,19 @@
 }
 
 
- /*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  
-     Weather *dataWeather = [cityWeather objectAtIndex:indexPath.row];
-     
-     WeatherTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WeatherTableViewCell class]) forIndexPath:indexPath];
-     cell.labelName.text=dataWeather.name;
-     cell.labelDescription.text=[@"Weather: " stringByAppendingString:dataWeather.description];
-     cell.labelTemp.text=[@"Temp: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp]];
-     cell.labelTempMin.text=[@"min: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_min]];
-     cell.labelTempMax.text=[@"max: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_max]];
-     
-     return cell;
+ 
+ Weather *dataWeather = [cityWeather objectAtIndex:indexPath.row];
+ 
+ WeatherTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WeatherTableViewCell class]) forIndexPath:indexPath];
+ cell.labelName.text=dataWeather.name;
+ cell.labelDescription.text=[@"Weather: " stringByAppendingString:dataWeather.description];
+ cell.labelTemp.text=[@"Temp: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp]];
+ cell.labelTempMin.text=[@"min: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_min]];
+ cell.labelTempMax.text=[@"max: " stringByAppendingString:[NSString stringWithFormat:@"%d",dataWeather.temp_max]];
+ 
+ return cell;
  
  return cell;
  }*/

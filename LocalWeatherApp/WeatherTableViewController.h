@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Geolocation.h"
+#import "ViewController.h"
 
 @interface WeatherTableViewController : UITableViewController
+
+@property (nonatomic) Geolocation* geolocview;
+@property (nonatomic) NSString * prueba;
 
 @end
